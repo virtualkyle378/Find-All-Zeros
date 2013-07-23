@@ -1,0 +1,37 @@
+
+Disp "Enter the highest exponent in the array"
+Prompt A
+A+1->A
+
+A->dim([list]QUA1)
+A->dim([list]QUA2)
+A->dim([list]QUA3)
+A->dim([list]QUA4)
+A->dim([list]QUA5)
+A->dim([list]QUA6)
+A->dim([list]POLY)
+A*4->dim([list]TEMP)
+
+A-1->A
+
+Disp "Enter value for each exponent level"
+For(B,0,A)
+Disp B
+Input [list]POLY(B)
+End
+
+"find possible zeros
+
+For(B, 1, POLY(0)){
+For(int y = 1; y < num + 1; y++){
+If(B*C=num){
+factors.push_back(y);
+End
+End
+
+->dim([list]PZE1)
+->dim([list]PZE2)
+->dim([list]FAC1)
+->dim([list]FAC2)
+
+prgm ...

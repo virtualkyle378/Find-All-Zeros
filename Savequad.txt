@@ -1,0 +1,7 @@
+
+Prompt A
+Prompt I
+
+A->dim([list]DEV1)
+I->[list]DEV1(A)
+Disp [list]DEV1(A)
