@@ -12,26 +12,91 @@ A->dim([list]QUA6)
 A->dim([list]POLY)
 A*4->dim([list]TEMP)
 
-A-1->A
-
 Disp "Enter value for each exponent level"
-For(B,0,A)
-Disp B
+For(B,1,A)
+Disp B-1
 Input [list]POLY(B)
 End
 
 "find possible zeros
+"find size of arrays
+0->D
 
-For(B, 1, POLY(0)){
-For(int y = 1; y < num + 1; y++){
-If(B*C=num){
-factors.push_back(y);
+For(B, 1, POLY(1))
+For(C, 1, POLY(1))
+If(B*C=POLY(1))
+D+1->D
 End
 End
 
-->dim([list]PZE1)
-->dim([list]PZE2)
-->dim([list]FAC1)
-->dim([list]FAC2)
+0->J
+D->dim([list]FAC1)
+"Fill arrays with stiff
+0->D
+
+For(B, 1, POLY(A))
+For(C, 1, POLY(A))
+If(B*C=POLY(A))
+D+1->D
+End
+End
+
+0->K
+D->dim([list]FAC2)
+
+For(B, 1, POLY(1))
+For(C, 1, POLY(1))
+If(B*C=POLY(1))
+C->[list]FAC1(J)
+J+1->J
+End
+End
+End
+
+For(B, 1, POLY(A))
+For(C, 1, POLY(A))
+If(B*C=POLY(A))
+C->[list]FAC2(K)
+K+1->K
+End
+End
+End
+
+J*K->dim([list]PZE1)
+J*K->dim([list]PZE2)
+
+For (B,1,J)
+For (C,1,K)
+[list]FAC1(B)->W
+[list]FAC2(C)->X
+
+If(X < 0)
+W*[neg]1->W
+X*[neg]1->X
+End
+W<0->D
+If(D)
+W*[neg]1->W
+For(E,2,W)
+W-E->F
+If(((W-F*fPart(W/F))=0)&((X-F*fPart(X/F))=0))
+W/F->W
+X/F->X
+Goto 
+End
+End
+Lbl A
+If(D)
+W*[neg]1->W
+
+if(find(fractions.begin(), fractions.end(), fraction) == fractions.end())
+
+End
+End
+End
+
 
 prgm ...
+
+
+
