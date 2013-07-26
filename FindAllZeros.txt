@@ -12,6 +12,33 @@ A->dim([list]QUA6)
 A->dim([list]POLY)
 A*4->dim([list]TEMP)
 
+0->A
+0->B
+0->C
+0->D
+0->E
+0->F
+0->G
+0->H
+0->I
+0->J
+0->K
+0->L
+0->M
+0->N
+0->O
+0->P
+0->Q
+0->R
+0->S
+0->T
+0->U
+0->V
+0->W
+0->X
+0->Y
+0->Z
+
 Disp "Enter value for each exponent level"
 For(B,1,A)
 Disp B-1
@@ -23,10 +50,10 @@ End
 0->D
 
 For(B, 1, POLY(1))
-For(C, 1, POLY(1))
-If(B*C=POLY(1))
-D+1->D
-End
+	For(C, 1, POLY(1))
+		If(B*C=POLY(1))
+		D+1->D
+	End
 End
 
 0->J
@@ -35,68 +62,82 @@ D->dim([list]FAC1)
 0->D
 
 For(B, 1, POLY(A))
-For(C, 1, POLY(A))
-If(B*C=POLY(A))
-D+1->D
-End
+	For(C, 1, POLY(A))
+		If(B*C=POLY(A))
+		D+1->D
+	End
 End
 
 0->K
 D->dim([list]FAC2)
 
 For(B, 1, POLY(1))
-For(C, 1, POLY(1))
-If(B*C=POLY(1))
-C->[list]FAC1(J)
-J+1->J
-End
-End
+	For(C, 1, POLY(1))
+		If(B*C=POLY(1))
+		C->[list]FAC1(J)
+		J+1->J
+		End
+	End
 End
 
 For(B, 1, POLY(A))
-For(C, 1, POLY(A))
-If(B*C=POLY(A))
-C->[list]FAC2(K)
-K+1->K
-End
-End
+	For(C, 1, POLY(A))
+		If(B*C=POLY(A))
+		C->[list]FAC2(K)
+		K+1->K
+		End
+	End
 End
 
 J*K->dim([list]PZE1)
 J*K->dim([list]PZE2)
 
 For (B,1,J)
-For (C,1,K)
-[list]FAC1(B)->W
-[list]FAC2(C)->X
+	For (C,1,K)
+		[list]FAC1(B)->W
+		[list]FAC2(C)->X
 
-If(X < 0)
-W*[neg]1->W
-X*[neg]1->X
-End
-W<0->D
-If(D)
-W*[neg]1->W
-For(E,2,W)
-W-E->F
-If(((W-F*fPart(W/F))=0)&((X-F*fPart(X/F))=0))
-W/F->W
-X/F->X
-Goto 
-End
-End
-Lbl A
-If(D)
-W*[neg]1->W
+		If(X < 0)
+			W*[neg]1->W
+			X*[neg]1->X
+		End
 
-if(find(fractions.begin(), fractions.end(), fraction) == fractions.end())
+		W<0->D
+		If(D)
+			W*[neg]1->W
+		For(E,2,W)
+			W-E->F
+			If(((W-F*fPart(W/F))=0)&((X-F*fPart(X/F))=0))
+				W/F->W
+				X/F->X
+				Goto A
+			End
+		End
+		Lbl A
+		If(D)
+			W*[neg]1->W
 
-End
-End
+		0->F
+		For(E,1,Z)
+			If([list]PZE1(E)!=W&[list]PZE2(E)=X)
+			1->F
+			Goto B
+			End
+		End
+		Lbl B
+		If(F)
+			Z+1->Z
+			W->[list]PZE1(Z)
+			X->[list]PZE2(Z)
+			W*[neg]1->W
+			Z+1->Z
+			W->[list]PZE1(Z)
+			X->[list]PZE2(Z)
+		End
+	End
 End
 
-
-prgm ...
+prgmFINDZERO
 
 
 
